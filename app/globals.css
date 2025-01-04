@@ -67,6 +67,6 @@ body {
     @apply border-border;
   }
   body {
-    padding: 1%;
+    @apply bg-background text-foreground;
   }
 }
