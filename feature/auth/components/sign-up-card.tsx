@@ -11,6 +11,8 @@ import { FaGithub } from "react-icons/fa";
 import { DottedSeparatorProps } from "@/components/dotted-separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { registerSchema } from "../schemas";
+import { useRegister } from "../api/use-register";
 import {
   Card,
   CardContent,
@@ -27,15 +29,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-const formSchema = z.object({
-  name: z.string().min(1, "Required"),
-  email: z.string().trim().email(),
-  password: z.string().min(8, "Minimum of 8 characters required"),
-});
-
 export const SignUpCard = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const { mutate } = useRegister();
+
+  const form = useForm<z.infer<typeof registerSchema>>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -43,8 +41,8 @@ export const SignUpCard = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = (values: z.infer<typeof registerSchema>) => {
+    mutate(values);
   };
 
   return (
