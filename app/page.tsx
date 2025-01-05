@@ -1,18 +1,16 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { UserButton } from "@/feature/auth/components/user-button";
+import { getCurrent } from "@/feature/auth/api/action";
+import { redirect } from "next/navigation";
 
-const Home = () => {
+export default async function Home() {
+  const user = await getCurrent();
+
+  if (!user) redirect("/sign-in");
+
   return (
-    <div className="flex gap-4">
-      <Button variant="primary">Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="destructive">Destructive</Button>
-      <Button variant="ghost">ghost</Button>
-      <Button variant="muted">muted</Button>
-      <Button variant="outline">outline</Button>
-      <Button variant="territory">territory</Button>
+    <div>
+      <UserButton></UserButton>
     </div>
   );
-};
-
-export default Home;
+}

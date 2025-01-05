@@ -10,7 +10,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { DottedSeparatorProps } from "@/components/dotted-separator";
+import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -45,7 +45,7 @@ export const SignInCard = () => {
           <CardTitle className="text-2xl">Welcome back</CardTitle>
         </CardHeader>
         <div className="px-7">
-          <DottedSeparatorProps></DottedSeparatorProps>
+          <DottedSeparator></DottedSeparator>
         </div>
         <CardContent className="p-7">
           <Form {...form}>
@@ -89,7 +89,7 @@ export const SignInCard = () => {
           </Form>
         </CardContent>
         <div className="px-7">
-          <DottedSeparatorProps></DottedSeparatorProps>
+          <DottedSeparator></DottedSeparator>
         </div>
         <CardContent className="p-7 flex flex-col gap-y-4">
           <Button
@@ -121,7 +121,7 @@ export const SignInCard = () => {
           </Button>
         </CardContent>
         <div className="px-7">
-          <DottedSeparatorProps></DottedSeparatorProps>
+          <DottedSeparator></DottedSeparator>
         </div>
         <CardContent className="p-7 flex items-center justify-center">
           <p>

@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import { DottedSeparatorProps } from "@/components/dotted-separator";
+import { DottedSeparator } from "@/components/dotted-separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { registerSchema } from "../schemas";
@@ -65,7 +65,7 @@ export const SignUpCard = () => {
           </CardTitle>
         </CardHeader>
         <div className="px-7">
-          <DottedSeparatorProps></DottedSeparatorProps>
+          <DottedSeparator></DottedSeparator>
         </div>
         <CardContent className="p-7">
           <Form {...form}>
@@ -125,7 +125,7 @@ export const SignUpCard = () => {
           </Form>
         </CardContent>
         <div className="px-7">
-          <DottedSeparatorProps></DottedSeparatorProps>
+          <DottedSeparator></DottedSeparator>
         </div>
         <CardContent className="p-7 flex flex-col gap-y-4">
           <Button
@@ -157,7 +157,7 @@ export const SignUpCard = () => {
           </Button>
         </CardContent>
         <div className="px-7">
-          <DottedSeparatorProps></DottedSeparatorProps>
+          <DottedSeparator></DottedSeparator>
         </div>
         <CardContent className="p-7 flex items-center justify-center">
           <p>
