@@ -1,5 +1,9 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 interface AuthLayoutProps {
@@ -7,12 +11,19 @@ interface AuthLayoutProps {
 }
 
 const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
+  const pathname = usePathname();
+  const isSignIn = pathname === "/sign-in";
+
   return (
     <main className="bg-neutral-100 min-h-screen">
       <div className="mx-auto max-w-screen-2xl p-4">
         <nav className="flex justify-between items-center">
           <Image src="/logo.svg" width={152} height={56} alt="Logo" />
-          <Button variant="secondary">Sign Up</Button>
+          <Button asChild variant="secondary">
+            <Link href={isSignIn ? "/sign-up" : "/sign-in"}>
+              {isSignIn ? "Sign UP" : "Log In"}
+            </Link>
+          </Button>
         </nav>
         <div className="flex flex-col items-center justify-center pt-4 md:pt-14">
           {children}

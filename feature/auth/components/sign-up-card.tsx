@@ -2,6 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
@@ -15,8 +18,35 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormDescription,
+  FormMessage,
+} from "@/components/ui/form";
+
+const formSchema = z.object({
+  name: z.string().min(1, "Required"),
+  email: z.string().trim().email(),
+  password: z.string().min(8, "Minimum of 8 characters required"),
+});
 
 export const SignUpCard = () => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+  });
+
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log(values);
+  };
+
   return (
     <div>
       <Card className="w-full h-full md:w-[486px] border-none shadow-none">
@@ -37,43 +67,67 @@ export const SignUpCard = () => {
           </CardTitle>
         </CardHeader>
         <div className="px-7">
-          {/* <DottedSeparatorProps></DottedSeparatorProps> */}
+          <DottedSeparatorProps></DottedSeparatorProps>
         </div>
         <CardContent className="p-7">
-          <form className="space-y-4">
-            <Input
-              required
-              type="text"
-              value={""}
-              onChange={() => {}}
-              placeholder="Enter your name"
-              disabled={false}
-            ></Input>
-            <Input
-              required
-              type="email"
-              value={""}
-              onChange={() => {}}
-              placeholder="Enter email address"
-              disabled={false}
-            ></Input>
-            <Input
-              required
-              type="password"
-              value={""}
-              onChange={() => {}}
-              placeholder="Enter password"
-              disabled={false}
-              min={8}
-              max={256}
-            ></Input>
-            <Button disabled={false} size="lg" className="w-full">
-              Login
-            </Button>
-          </form>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <FormField
+                name="name"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="text"
+                        placeholder="Enter your name"
+                      ></Input>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              ></FormField>
+              <FormField
+                name="email"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="email"
+                        placeholder="Enter email address"
+                      ></Input>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              ></FormField>
+              <FormField
+                name="password"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="password"
+                        placeholder="Enter your password"
+                      ></Input>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              ></FormField>
+              <Button disabled={false} size="lg" className="w-full">
+                Login
+              </Button>
+            </form>
+          </Form>
         </CardContent>
         <div className="px-7">
-          {/* <DottedSeparatorProps></DottedSeparatorProps> */}
+          <DottedSeparatorProps></DottedSeparatorProps>
         </div>
         <CardContent className="p-7 flex flex-col gap-y-4">
           <Button
@@ -103,6 +157,17 @@ export const SignUpCard = () => {
             <FaGithub className="mr-2 size-5"></FaGithub>
             Login with Github
           </Button>
+        </CardContent>
+        <div className="px-7">
+          <DottedSeparatorProps></DottedSeparatorProps>
+        </div>
+        <CardContent className="p-7 flex items-center justify-center">
+          <p>
+            Already have an account?
+            <Link href="/sign-in">
+              <span className="text-blue-700">&nbsp; Sign In</span>
+            </Link>
+          </p>
         </CardContent>
       </Card>
     </div>
