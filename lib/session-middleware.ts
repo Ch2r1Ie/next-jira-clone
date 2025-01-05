@@ -44,8 +44,6 @@ export const sessionMiddleware = createMiddleware<AdditionalContext>(
     const storage = new Storage(client);
     const user = await account.get();
 
-    console.log(user);
-
     c.set("account", account);
     c.set("databases", databases);
     c.set("storage", storage);

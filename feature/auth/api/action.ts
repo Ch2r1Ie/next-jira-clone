@@ -17,8 +17,6 @@ export const getCurrent = async () => {
 
     const account = new Account(client);
 
-    console.log(account.get());
-
     return await account.get();
   } catch {
     return null;
