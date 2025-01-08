@@ -15,7 +15,10 @@ export const getCurrent = async () => {
 
     if (!session) return null;
 
+    client.setSession(session.value);
     const account = new Account(client);
+
+    console.log(account.get());
 
     return await account.get();
   } catch {
